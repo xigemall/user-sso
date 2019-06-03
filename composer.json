@@ -1,0 +1,28 @@
+{
+  "name": "xigemall/user-sso",
+  "description": "xigemall user-sso",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "liuyong",
+      "email": "1032380143@qq.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Xigemall\\UserSso\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Xigemall\\UserSso\\UserSsoServiceProvider",
+        "Xigemall\\UserSso\\CurlServiceProvider"
+      ],
+      "aliases": {
+        "UserSsoCurl": "Xigemall\\UserSso\\Facades\\UserSsoCurl"
+      }
+    }
+  }
+}
