@@ -33,7 +33,7 @@ trait UserSso
      * 授权时的重定向
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function ssoLogin()
+    public function redirect()
     {
         $query = http_build_query([
             'client_id' => $this->clientId,
@@ -47,9 +47,9 @@ trait UserSso
     /**
      * 将授权码转换为访问令牌
      */
-    public function callback(Request $request)
+    public function getAccessToken(Request $request)
     {
-        $code = $request->query('code');
+        $code = $request->code;
         $url = $this->url.'/oauth/token';
         $data = [
             'grant_type' => 'authorization_code',

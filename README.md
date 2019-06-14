@@ -136,11 +136,11 @@ return [
 ### 三方登陆
 
 ```angular2html
-登陆地址
-    /sso_login
+授权登陆地址(获取code)
+    /api/redirect
 
 回调地址（获取accessToken）
-    /callback
+    /api/access_token
 ```
 
 ### 重写登陆
@@ -153,7 +153,7 @@ class SsoController extends Controller
      * 授权时的重定向
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function ssoLogin()
+    public function redirect()
     {
         $query = http_build_query([
             'client_id' => $this->clientId,
@@ -169,7 +169,7 @@ class SsoController extends Controller
      */
     public function callback(Request $request)
     {
-        $code = $request->query('code');
+        $code = $request->code;
         $url = $this->url.'/oauth/token';
         $data = [
             'grant_type' => 'authorization_code',
